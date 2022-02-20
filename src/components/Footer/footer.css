@@ -1,4 +1,21 @@
 .footer {
     background-color: #8cb1b9;
     color: #ffffffec;
+    padding: 1em;
+}
+
+.footer-content {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.footer-content a {
+    color: #486d4b;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    color: #fff;
 }

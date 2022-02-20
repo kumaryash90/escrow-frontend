@@ -5,7 +5,11 @@ const Footer = () => {
     return (
         <footer className='footer'>
             <div className='container'>
-                <h1>this is footer</h1>
+            <div className="footer-content">
+                    <p>Find source code here:&nbsp;&nbsp;
+                        <a href="https://github.com/kumaryash90/escrow-frontend">github.com/kumaryash90</a>
+                    </p>
+                </div>
             </div>
         </footer>
     );

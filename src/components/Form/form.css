@@ -73,8 +73,9 @@
 }
 
 .info-section {
-    text-align: center;
-    width: 60%;
+    text-align: left;
+    width: 50%;
+    margin-bottom: 1em;
 }
 
 .info-section h1 {

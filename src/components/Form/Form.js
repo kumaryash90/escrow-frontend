@@ -61,6 +61,10 @@ const Form = (props) => {
                     </div>
                     <div className='info-section'>
                         <h1>About</h1>
+                        <p>This is an Escrow DApp, which allows users to set up escrow payments.</p>
+                        <p>The Smart Contract in the backend <strong>contains a mapping</strong> of all the escrow payments created.</p>
+                        <p>Beneficiary can withdraw once the Arbiter has approved the payment.</p>
+                        <p>Depositor can withdraw if the payment is cancelled and Arbiter has unlocked the funds.</p>
                     </div>
                     <div className={`form-overlay ${isMining && 'form-overlay-visible'}`}>
                         <p className='overlay-status'>Loading...</p>
