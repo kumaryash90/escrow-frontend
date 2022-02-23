@@ -1,6 +1,6 @@
 # Escrow Project DApp Frontend
 
-Live at: https://escrowproject.netlify.app/ (note: Connect with Metamask on Rinkeby network)
+Live at: https://escrowproject.netlify.app/ (note: Connect with Metamask on **Rinkeby network**)
 
 Smart Contract source code: https://github.com/kumaryash90/escrow-solidity
 
