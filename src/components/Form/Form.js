@@ -15,6 +15,19 @@ const Form = (props) => {
     
 
     const handleSubmit = () => {
+        if(formData.beneficiary.length < 42 || formData.arbiter.length < 42) {
+            alert("please enter valid hex address");
+            return;
+        } else if(formData.amount < 0.01) {
+            alert("amount should be >= 0.01 eth");
+            return;
+        } else if(formData.beneficiary.toLowerCase() === currentAccount.toLowerCase()) {
+            alert("depositor and beneficiary can't be same");
+            return;
+        } else if(formData.arbiter.toLowerCase() === currentAccount.toLowerCase()) {
+            alert("depositor and arbiter can't be same");
+            return;
+        }
         setIsMining(true);
         const promise = new Promise(resolve => resolve(createEscrow({ ...formData, depositor: currentAccount })));
         promise.then(data => {

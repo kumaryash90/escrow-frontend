@@ -10,6 +10,11 @@ const App = () => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [isMining, setIsMining] = useState(false);
     const [escrowData, setEscrowData] = useState([]);
+    let correctNetwork = false;
+
+    if(window.ethereum.networkVersion === "4") {
+        correctNetwork = true;
+    }
 
     const isWalletConnected = async () => {
         try {
@@ -31,6 +36,22 @@ const App = () => {
                     setCurrentAccount(account);
                     window.location.reload();
                 });
+                ethereum.on('chainChanged', (chainId) => {
+                        window.location.reload();
+                });
+                if(ethereum.networkVersion === "4") {
+                    setIsMining(true);
+                    const promise = new Promise(resolve => resolve(getEscrowData()));
+                    promise.then(data => {
+                        if(data) {
+                            setEscrowData(data);
+                            setIsMining(false);
+                        } else {
+                            alert("something went wrong")
+                            return;
+                        }
+                    });
+                }
             } else {
                 console.log("no authorized account found");
             }
@@ -73,44 +94,13 @@ const App = () => {
         isWalletConnected();
     }, [currentAccount]);
 
-    useEffect(() => {
-        try {
-            setIsMining(true);
-            const promise = new Promise(resolve => resolve(getEscrowData()));
-            promise.then(data => {
-                if(data) {
-                    setEscrowData(data);
-                    setIsMining(false);
-                } else {
-                    if(!window.ethereum) {
-                        alert("please install metamask");
-                    } else if(window.ethereum.network !== "4") {
-                        alert("please connect on rinkeby");
-                    } else {
-                        alert("something went wrong")
-                    }
-                    return;
-                }
-            });
-
-        } catch(error) {
-            if(!window.ethereum) {
-                alert("please install metamask");
-            } else if(window.ethereum.network !== "4") {
-                alert("please connect on rinkeby");
-            } else {
-                console.log(error);
-            }
-            return;
-        }
-    }, [currentAccount]);
 
     return (
         <AccountContext.Provider value={{currentAccount, setCurrentAccount, escrowData, setEscrowData, isMining, setIsMining}}>
                 <div>
                     <Header />
                     <Form connectWallet={connectWallet}/>
-                    <Dashboard />
+                    <Dashboard correctNetwork={correctNetwork} />
                     <Footer />
                 </div> 
         </AccountContext.Provider>

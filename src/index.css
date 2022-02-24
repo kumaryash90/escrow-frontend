@@ -19,6 +19,23 @@ h1, h2, h3, p {
     margin: 0 auto;
 }
 
+.no-network {
+    margin: 0 auto;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.no-network p {
+    display: inline-block;
+    background-color: #fff;
+    margin: auto;
+    width: 40%;
+    padding: 2em;
+    text-align: center;
+}
+
 @media (max-width: 760px) {
     .container {
         width: 95%;

@@ -4,7 +4,7 @@ import { approvePayment, unlockPayment, withdrawDepositor, withdrawBeneficiary }
 import './dashboard.css';
 import EscrowItem from './EscrowItem';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const { currentAccount } = useContext(AccountContext);
     const { escrowData, setEscrowData } = useContext(AccountContext);
     const { isMining, setIsMining } = useContext(AccountContext);
@@ -111,7 +111,7 @@ const Dashboard = () => {
                         </li>
                     </ul>
                     <div className='dashboard-content'>
-                        {displayData.map((item) => {
+                        {props.correctNetwork ? displayData.map((item) => {
                             return <EscrowItem 
                                         user = {user}
                                         account = {currentAccount}
@@ -128,7 +128,7 @@ const Dashboard = () => {
                                         handleWithdrawDepositor = {handleWithdrawDepositor}
                                         handleWithdrawBeneficiary = {handleWithdrawBeneficiary}
                                     />
-                        })}
+                        }) : <h1>Connect on Rinkeby</h1> }
                     </div>
                 </div>
             </div>
